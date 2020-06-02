@@ -1,6 +1,9 @@
 package Controleur;
 
-public class Controleur {
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Controleur implements ActionListener {
     //champs
 
     //constructeur
@@ -9,4 +12,7 @@ public class Controleur {
     }
 
     //méthodes
+    public void actionPerformed(ActionEvent e) {
+
+    }
 }
