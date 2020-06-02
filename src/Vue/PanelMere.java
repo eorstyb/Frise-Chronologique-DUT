@@ -1,6 +1,7 @@
 package Vue;
 
-import javax.smartcardio.Card;
+import Controleur.Controleur;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,18 +12,21 @@ public class PanelMere extends JPanel implements ActionListener {
     private PanelCreation panelCrea;
     private PanelAffichage panelAff;
     private FenetreMere fenetreMere;
+    private Controleur controleur;
 
-    public PanelMere(FenetreMere fenetreMere) {
+    public PanelMere(FenetreMere parFenetreMere) {
         this.setLayout(new CardLayout());
         panelCrea = new PanelCreation();
         panelAff = new PanelAffichage();
+        fenetreMere = parFenetreMere;
+        controleur = new Controleur(panelCrea, panelAff);
 
         this.add("Création",panelCrea);
         this.add("Affichage",panelAff);
     }
 
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == fenetreMere.getItemAffichage())
+        if(e.getSource().equals(fenetreMere.getItemAffichage()))
             ((CardLayout) getLayout()).show(this,"Affichage");
 
         if(e.getSource() == fenetreMere.getItemCreation())

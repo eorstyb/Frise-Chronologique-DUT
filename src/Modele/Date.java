@@ -21,7 +21,6 @@ public class Date {
         mois = today.get (Calendar.MONTH)+1;
         jour = today.get (Calendar.DAY_OF_MONTH);
         jourSemaine = today.get (Calendar.DAY_OF_WEEK)-1;
-
     }
 
     public Date(int parJour, int parMois, int parAnnee) {

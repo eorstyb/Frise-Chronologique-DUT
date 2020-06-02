@@ -11,7 +11,7 @@ import java.awt.*;
 
 public class FenetreMere extends JFrame{
     //champs
-    private PanelMere panelMere = new PanelMere(this);
+    private PanelMere panelMere;
     private JMenuBar menu = new JMenuBar();
     private JMenuItem itemCreation = new JMenuItem("Création");
     private JMenuItem itemAffichage = new JMenuItem("Affichage");
@@ -19,6 +19,7 @@ public class FenetreMere extends JFrame{
 
     public FenetreMere() {
         super("Frise chronologique Corona");
+        panelMere = new PanelMere(this);
         this.setVisible(true);
         this.setContentPane(this.panelMere);
         this.setBackground(new Color(23, 23, 23));
@@ -33,7 +34,7 @@ public class FenetreMere extends JFrame{
         menu.add(itemCreation);
         menu.add(itemAffichage);
         menu.add(itemFermer);
-   }
+    }
 
     //getter
     public JMenuItem getItemCreation() {

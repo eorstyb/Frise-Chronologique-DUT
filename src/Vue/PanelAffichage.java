@@ -1,5 +1,7 @@
 package Vue;
 
+import Controleur.Controleur;
+
 import javax.swing.JPanel;
 
 public class PanelAffichage extends JPanel {
@@ -11,4 +13,7 @@ public class PanelAffichage extends JPanel {
     }
 
     //méthodes
+    public void enregistreEcouteur(Controleur controleur){
+
+    }
 }
