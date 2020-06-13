@@ -1,10 +1,14 @@
 package Vue;
 
-import javax.swing.JPanel;
+import javax.swing.*;
+import java.util.Calendar;
 
 public class PanelFormulaire extends JPanel {
     //champs
-
+    JLabel nomEvenement = new JLabel("Nom de l'événement");
+    JTextField entreeNomEvenement = new JTextField(20);
+    JLabel dateEvenement = new JLabel("Date de l'événement");
+    JTextField entreeJour
     public PanelFormulaire() {
 
     }
