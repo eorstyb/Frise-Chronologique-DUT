@@ -15,7 +15,7 @@ public class Date {
 
 //constructeurs
 
-    public Date(){
+    public Date(Date date){
         GregorianCalendar today = new GregorianCalendar ();
         annee = today.get (Calendar.YEAR);
         mois = today.get (Calendar.MONTH)+1;

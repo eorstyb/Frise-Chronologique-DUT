@@ -9,14 +9,18 @@ import javax.swing.*;
 public class PanelEvenement extends JPanel {
 
     //champs
-    private JTextField titre;
+    private JLabel titre;
     private Date date;
-    private JTextField description;
-    private JButton next;
-    private JButton previous;
+    private JLabel description;
 
-    public PanelEvenement(Agenda agenda) {
-        titre = agenda.getHashMapEvts().
+
+    public PanelEvenement(Evenement evenement) {
+        titre = new JLabel(evenement.getTitre());
+        date = new Date(evenement.getDate());
+        description = new JLabel(evenement.getDescription());
+
+
+
 
 
     }

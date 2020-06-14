@@ -17,9 +17,11 @@ public class Evenement {
         poids = parPoids;
     }
 
-    public Date getDate() { return date; }
+    public Date getDate() { return date;}
 
     public String getTitre(){ return titre;}
+
+    public String getDescription(){ return description;}
 
 
     //méthodes

@@ -18,10 +18,10 @@ public class PanelAffichage extends JPanel {
     public PanelAffichage() {
 
         Agenda agenda = new Agenda();
-        agenda.ajout(new Evenement(new Date(16,3,2020),"Confinement","<br>waw<br>" ,"images/confinement.jpg", 3));
+        agenda.ajout(new Evenement(new Date(16,3,2020),"Confinement","<html><br>waw<br><html>" ,"images/confinement.jpg", 3));
 
 
-        panelEvenement = new PanelEvenement(agenda);
+        panelEvenement = new PanelDiapo(agenda);
         panelFrise = new PanelFrise();
         this.add(panelEvenement);
         this.add(panelFrise);
