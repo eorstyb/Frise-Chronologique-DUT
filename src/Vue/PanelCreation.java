@@ -2,7 +2,6 @@ package Vue;
 
 import Controleur.Controleur;
 import Modele.*;
-import javafx.scene.control.DatePicker;
 
 import javax.swing.*;
 import java.awt.*;
@@ -110,6 +109,10 @@ public class PanelCreation extends JPanel {
 
     public JButton getValider() {
         return valider;
+    }
+
+    public JTextField getEntreeIntitule() {
+        return entreeIntitule;
     }
 }
 

@@ -8,7 +8,8 @@ public class PanelFormulaire extends JPanel {
     JLabel nomEvenement = new JLabel("Nom de l'événement");
     JTextField entreeNomEvenement = new JTextField(20);
     JLabel dateEvenement = new JLabel("Date de l'événement");
-    JTextField entreeJour
+    JTextField entreeJour;
+
     public PanelFormulaire() {
 
     }

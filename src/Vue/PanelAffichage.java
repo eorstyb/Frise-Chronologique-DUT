@@ -1,12 +1,8 @@
 package Vue;
 
-<<<<<<< HEAD
 import javax.swing.*;
-=======
 import Controleur.Controleur;
-
 import javax.swing.JPanel;
->>>>>>> 67db57f1647fb3930f570639ad14f8d6373946c2
 
 public class PanelAffichage extends JPanel {
     //champs
@@ -19,7 +15,10 @@ public class PanelAffichage extends JPanel {
     public PanelAffichage() {
         panelEvenement = new PanelEvenement();
         panelFrise = new PanelFrise();
-        intituleFrise =
+        intituleFrise = getEntreeIntitule();
+        this.add(intituleFrise);
+        this.add(panelEvenement);
+        this.add(panelFrise);
     }
 
     public JLabel getIntituleFrise() {
