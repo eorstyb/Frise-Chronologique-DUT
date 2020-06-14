@@ -81,6 +81,7 @@ public class Date {
      *
      * @return
      */
+
     public int getJour() {
         return jour;
     }
@@ -96,5 +97,24 @@ public class Date {
     public int getJourSemaine() {
         return jourSemaine;
     }
+
+
     //méthodes
+    public int compareTo(Date parDate) {
+        if (annee < parDate.annee)
+            return -1;
+        if (annee > parDate.annee)
+            return 1;
+        // les ann�es sont =
+        if (mois < parDate.mois)
+            return -1;
+        if (mois > parDate.mois)
+            return 1;
+        // les mois sont =
+        if (jour < parDate.jour)
+            return -1;
+        if (jour > parDate.jour)
+            return 1;
+        return 0;
+    }
 }
