@@ -15,8 +15,8 @@ public class PanelAffichage extends JPanel {
     public PanelAffichage() {
         panelEvenement = new PanelEvenement();
         panelFrise = new PanelFrise();
-        intituleFrise = getEntreeIntitule();
-        this.add(intituleFrise);
+        //intituleFrise = getEntreeIntitule();
+        //this.add(intituleFrise);
         this.add(panelEvenement);
         this.add(panelFrise);
     }

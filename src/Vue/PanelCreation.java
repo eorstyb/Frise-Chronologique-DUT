@@ -7,9 +7,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class PanelCreation extends JPanel {
-    //champs
-    private JLabel labelTitre = new JLabel("Création de la frise");
+    //
     private PanelFormulaire panelForm;
+    private JLabel labelTitre = new JLabel("Création de la frise");
     private String cheminFichierSauvegarde;
     private JLabel labelIntitule = new JLabel("Intitulé");
     private JTextField entreeIntitule = new JTextField(5);
@@ -102,6 +102,15 @@ public class PanelCreation extends JPanel {
         this.labelIntitule.setLabelFor(entreeIntitule);
     }
 
+    public void showFormulaire(Controleur controleur) {
+        panelForm = new PanelFormulaire();
+        this.removeAll();
+        this.add(panelForm);
+        panelForm.enregistreEcouteur(controleur);
+        validate();
+        repaint();
+    }
+
     //méthodes
     public void enregistreEcouteur(Controleur controleur) {
         getValider().addActionListener(controleur);
@@ -113,6 +122,38 @@ public class PanelCreation extends JPanel {
 
     public JTextField getEntreeIntitule() {
         return entreeIntitule;
+    }
+
+    public JComboBox<Integer> getJourDebut() {
+        return jourDebut;
+    }
+
+    public JComboBox<String> getMoisDebut() {
+        return moisDebut;
+    }
+
+    public JComboBox<Integer> getAnneeDebut() {
+        return anneeDebut;
+    }
+
+    public JComboBox<Integer> getJourFin() {
+        return jourFin;
+    }
+
+    public JComboBox<String> getMoisFin() {
+        return moisFin;
+    }
+
+    public JComboBox<Integer> getAnneeFin() {
+        return anneeFin;
+    }
+
+    public JTextField getEntreeCheminFichier() {
+        return entreeCheminFichier;
+    }
+
+    public PanelFormulaire getPanelForm() {
+        return panelForm;
     }
 }
 
