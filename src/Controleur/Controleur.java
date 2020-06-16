@@ -1,13 +1,14 @@
 package Controleur;
 
-import Modele.Agenda;
-import Modele.Date;
-import Modele.Evenement;
-import Modele.Frise;
+import Modele.*;
 import Vue.PanelAffichage;
 import Vue.PanelCreation;
+import com.sun.org.apache.xml.internal.utils.SystemIDResolver;
+import javafx.scene.layout.Pane;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 public class Controleur implements ActionListener {
     //champs
@@ -18,9 +19,21 @@ public class Controleur implements ActionListener {
     private String intitule;
     private String cheminFichier;
     private Frise frise;
+    private Frise[] tabFrises = new Frise[20];
+    private File fichier;
 
     //constructeur
     public Controleur(PanelCreation parPanelCreation, PanelAffichage parPanelAffichage) {
+        panelCreation = parPanelCreation;
+        panelAffichage = parPanelAffichage;
+        panelCreation.enregistreEcouteur(this);
+        panelAffichage.enregistreEcouteur(this);
+    }
+
+    public Controleur(Frise[] parTabFrises, Frise parFrise, PanelCreation parPanelCreation, PanelAffichage parPanelAffichage) {
+        tabFrises = parTabFrises;
+        frise = parFrise;
+        fichier = new File(frise.getCheminFichier());
         panelCreation = parPanelCreation;
         panelAffichage = parPanelAffichage;
         panelCreation.enregistreEcouteur(this);
@@ -43,6 +56,13 @@ public class Controleur implements ActionListener {
             cheminFichier = panelCreation.getEntreeCheminFichier().getText();
 
             frise = new Frise(new Agenda(), dateDebut, dateFin, intitule, cheminFichier);
+            fichier = new File(frise.getCheminFichier());
+            int i = 0;
+            while(tabFrises[i] != null)
+                i += 1;
+            tabFrises[i] = frise;
+            panelAffichage = new PanelAffichage(frise);
+            LectureEcriture.ecriture(fichier, tabFrises);
             panelCreation.setFrise(frise);
             panelCreation.showFormulaire(this);
         }
@@ -57,6 +77,7 @@ public class Controleur implements ActionListener {
                     panelCreation.getPanelForm().getEntreePoids().getItemAt(panelCreation.getPanelForm().getEntreePoids().getSelectedIndex()));
 
             frise.getAgenda().ajout(evt);
+            LectureEcriture.ecriture(fichier, tabFrises);
         }
     }
 }
