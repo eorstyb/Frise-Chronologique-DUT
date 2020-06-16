@@ -25,6 +25,7 @@ public class PanelCreation extends JPanel {
     private JTextField entreeCheminFichier = new JTextField(15);
     private JButton valider = new JButton("Valider");
     private String[] MOIS = {"Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"};
+    private Frise frise;
 
     //constructeur
     public PanelCreation() {
@@ -103,7 +104,7 @@ public class PanelCreation extends JPanel {
     }
 
     public void showFormulaire(Controleur controleur) {
-        panelForm = new PanelFormulaire();
+        panelForm = new PanelFormulaire(frise);
         this.removeAll();
         this.add(panelForm);
         panelForm.enregistreEcouteur(controleur);
@@ -154,6 +155,10 @@ public class PanelCreation extends JPanel {
 
     public PanelFormulaire getPanelForm() {
         return panelForm;
+    }
+
+    public void setFrise(Frise frise) {
+        this.frise = frise;
     }
 }
 

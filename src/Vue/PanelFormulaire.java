@@ -1,7 +1,7 @@
 package Vue;
 
-import Constants.Constantes;
 import Controleur.Controleur;
+import Modele.Frise;
 import com.sun.corba.se.impl.orbutil.closure.Constant;
 
 import javax.swing.*;
@@ -25,9 +25,11 @@ public class PanelFormulaire extends JPanel {
     private JTextField entreeCheminImage = new JTextField(20);
     private JButton valider = new JButton("Valider");
     private String[] MOIS = {"Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"};
+    private Frise frise;
 
 
-    public PanelFormulaire() {
+    public PanelFormulaire(Frise parFrise) {
+        frise = parFrise;
         setLayout(new GridBagLayout());
         GridBagConstraints contraintes = new GridBagConstraints();
         contraintes.insets = new Insets(30, 30, 30, 30);
@@ -67,7 +69,7 @@ public class PanelFormulaire extends JPanel {
         this.add(entreeMois, contraintes);
 
         contraintes.gridx += 1;
-        for(int i = Constantes.DATEDEBUT.getAnnee(); i < Constantes.DATEFIN.getAnnee() + 1; i++)
+        for(int i = frise.getDateDeDebut().getAnnee(); i < frise.getDateDeFin().getAnnee() + 1; i++)
             entreeAnnee.addItem(i);
         this.add(entreeAnnee, contraintes);
 

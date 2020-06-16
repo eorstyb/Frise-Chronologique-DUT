@@ -1,12 +1,13 @@
 package Modele;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 /**
  * La classe Date permet de construire une date
  */
-public class Date {
+public class Date implements Serializable {
     //champs
     private int jour;
     private int mois;

@@ -1,219 +1,190 @@
 package Modele;
 
-
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.TreeSet;
-import java.util.Iterator;
-import java.util.HashMap;
-import java.util.TreeMap;
-import java.util.Set;
+import java.util.Arrays;
 
 /**
- * <b> La classe Agenda sert � construire l'objet Agenda</b>
+ * Un agenda qui contient des évenéments
+ * @see Evenement
  */
-public class Agenda {
-    /**
-     * Une liste dans laquelle on ajoute les evenements de l'agenda et sert pour compter
-     * le nombre d'evenements.
-     *
-     * @see Agenda#compteNbEvt(Date)
-     */
-    private ArrayList<Evenement> listeEvts;
-    /**
-     * un TreeSet dans lequel on ajoute des evenements tri�s.
-     */
-    private TreeSet<Evenement> arbreEvts;
-    /**
-     * Une Hashmap dans lequel on ajoute des evenements.
-     *
-     * @see Agenda#getHashMapEvts()
-     */
-    private HashMap<Integer, TreeSet<Evenement>> hashMapEvts;
-
+public class Agenda implements Serializable {
 
     /**
-     * <b>Constructeur de la classe Agenda</b>
+     * Un tableau d'événements
+     * Il est possible d'ajouter des événements, de chercher un événement, de faire des tris etc
+     *
+     * @see Agenda#ajout(Evenement)
+     * @see Agenda#sort()
+     * @see Agenda#triInsertion()
+     */
+    private Evenement[] tabEvenements = new Evenement[15];
+
+    /**
+     * Entier permettant de connaître le nombre d'événements dans l'objet agenda
+     */
+    private int nbEvenements = 0;
+
+    /**
+     * Une ArrayList d'événements
+     * @see Agenda#fusion(ArrayList, ArrayList)
+     */
+    ArrayList<Evenement> listEvenements = new ArrayList();
+
+    /**
+     * Constructeur de la classe Agenda vide car les champs sont déjà instanciés
      */
     public Agenda() {
-
-        listeEvts = new ArrayList<>();
-        arbreEvts = new TreeSet<>();
-        hashMapEvts = new HashMap<>();
     }
 
     /**
-     * Cette fonction ajoute un evenement dans l'agenda
+     * Méthode d'ajout d'un événement dans le tableau d'événements et dans l'ArrayList
      *
-     * @param parEvt l'�venement ajout�
+     * @param parEvt l'événement à ajouter
+     * @see Agenda#tabEvenements
+     * @see Agenda#listEvenements
      */
     public void ajout(Evenement parEvt) {
-
-        // Ajout dans la ArrayList
-        listeEvts.add(parEvt);
-        // Ajout dans le TreeSet
-        arbreEvts.add(parEvt);
-
-        // Ajout dans la HashMap :
-        // clef : le numero de semaine
-        // valeur : les �v�nements qui ont lieu cette semaine
-        // nous servira en IHM pour afficher l'agenda semaine par semaine
-
-        Date date = parEvt.getDate();
-        GregorianCalendar calendar = new GregorianCalendar(date.getAnnee(),
-                date.getMois() - 1, date.getJour());
-        int numeroDeSemaine = calendar.get(Calendar.WEEK_OF_YEAR);
-
-
-        if (hashMapEvts.containsKey(numeroDeSemaine)) {
-            hashMapEvts.get(numeroDeSemaine).add(parEvt);
-        } else {
-            TreeSet<Evenement> liste = new TreeSet<Evenement>();
-            liste.add(parEvt);
-            getHashMapEvts().put(numeroDeSemaine, liste);
-        }
+        this.tabEvenements[this.nbEvenements++] = parEvt;
+        this.listEvenements.add(parEvt);
     }
 
-
     /**
-     * parcours de la hashmap avec un iterateur sur l'ensemble des clefs
+     * Vérifie si un événement appartient à l'agenda
      *
-     * @return une chaine de caract�re
+     * @param parEvt l'événement a chercher
+     * @return l'indice dans le tableau si l'événement a été trouvé sinon retourne -1
      */
+    public int getEvenement(Evenement parEvt) {
+        int indice = 0;
+        boolean trouve = false;
 
-
-    @Override
-    public String toString() {
-        String chaine = "\n" + listeEvts + "\n" + arbreEvts + "\n\n";
-
-        Set<Integer> clefs = getHashMapEvts().keySet();
-        Iterator<Integer> iterateur = clefs.iterator();
-        while (iterateur.hasNext()) {
-            Integer clef = iterateur.next();
-            TreeSet<Evenement> liste = getHashMapEvts().get(clef);
-            chaine += clef + " : " + liste + "\n";
-        }
-        return chaine;
-
-
-    }
-
-
-    /**
-     * compte le nombre d'évenements de l'agenda
-     * qui ont lieu à la date parDate
-     *
-     * @param parDate la date choisie
-     * @return nb d'evenement
-     */
-    public int compteNbEvt(Date parDate) {
-        int nbEvt = 0;
-        Iterator<Evenement> iterateur = arbreEvts.iterator();
-        while (iterateur.hasNext()) {
-            Evenement evt = iterateur.next();
-            if (evt.getDate().compareTo(parDate) == 0)
-                nbEvt++;
-        }  // while
-        return nbEvt;
-    } // compteNbEvt
-
-    /**
-     * compte le nombre d'�v�nements de l'agenda
-     *   dont le titre contient la cha�ne de caracat�res parString
-     * @param parString une chaine de caract�re
-     * @return nb d'evenement
-     */
-    /*public int compteNbEvt (String parString) {
-        int nbEvt = 0;
-        for (Evenement evt : listeEvts) {
-            if (evt.getNom().contains (parString)) {
-                nbEvt++;
+        while (!trouve && indice < this.nbEvenements) {
+            if (this.tabEvenements[indice].compareTo(parEvt) == 0) {
+                trouve = true;
+            } else {
+                ++indice;
             }
         }
-        return nbEvt;
-    } // compteNbEvt
-  */
-  /* // � tester
-  public void triFusion (){
-	 // listeEvts =
-			  triFusion (listeEvts, 0,listeEvts.size());
-
-  }*/
-
- /* public ArrayList <Evenement>  triFusion (ArrayList <Evenement>  list, int indiceDebut, int longueur) {
-	if (longueur == 1){
-
-		 ArrayList <Evenement> arrayList =new ArrayList <Evenement> ();
-		 arrayList.add(list.get(indiceDebut));
-		 return arrayList;
-
-	}
-	else
-			return fusion (triFusion(list,indiceDebut ,longueur/2),
-			        triFusion (list, indiceDebut + longueur/2, longueur-longueur/2)
-					);
-
-
-  }
-
-  public ArrayList <Evenement> fusion (ArrayList <Evenement> liste1, ArrayList <Evenement> liste2){
-  	if (liste1.isEmpty()) {
-               return liste2;
-	}
-    if (liste2.isEmpty()) {
-               return liste1;
-	}
-	ArrayList <Evenement> arrayList =new ArrayList <Evenement> ();
-	Evenement premierDeListe1 = liste1.get(0);
-	Evenement premierDeListe2 = liste2.get(0);
-    if (premierDeListe1.compareTo(premierDeListe2) <= 0) {
-			liste1.remove(0);
-            arrayList = fusion(liste1,liste2);
-			arrayList.add(0,premierDeListe1);
-
-	}
-	else {  liste2.remove(0);
-            arrayList = fusion(liste1,liste2);
-			arrayList.add(0,premierDeListe2);
-
-			}
-	return arrayList;
-    }*/
-
-    /**
-     * permet l'acc�s � la hashMap d'evenements
-     *
-     * @return la Hashmap qui contient les evenements
-     */
-    public HashMap<Integer, TreeSet<Evenement>> getHashMapEvts() {
-        return hashMapEvts;
+        return trouve ? indice : -1;
     }
 
     /**
-     * permet de modifier la hasmapevt
+     * Retourne l'agenda sous forme de texte
      *
-     * @param hashMapEvts la Hashmap courante
+     * @return une chaîne de caractères
      */
-    public void setHashMapEvts(HashMap<Integer, TreeSet<Evenement>> hashMapEvts) {
-        this.hashMapEvts = hashMapEvts;
+    public String toString() {
+        String chaine = "";
+
+        for (int i = 0; i < this.nbEvenements; ++i) {
+            chaine = chaine + this.tabEvenements[i] + "\n";
+        }
+
+        return chaine;
     }
 
     /**
-     * permet l'acc�s au Treeset d'evenements
+     * Fait un tri par insertion sur le tableau d'événements
      *
-     * @return arbreEvts
+     * @see Agenda#tabEvenements
      */
-    public TreeSet<Evenement> getEvenements() {
-        return arbreEvts;
+    public void triInsertion() {
+        for (int i = 1; i < this.nbEvenements; ++i) {
+            Evenement aInserer = this.tabEvenements[i];
+
+            int j;
+            for (j = i; j > 0 && this.tabEvenements[j - 1].compareTo(aInserer) > 0; --j) {
+                this.tabEvenements[j] = this.tabEvenements[j - 1];
+            }
+
+            this.tabEvenements[j] = aInserer;
+        }
+
     }
 
     /**
-     * permet d'obtenir un TreeSet d'evenements selon le num�ro de semaine
-     * @param numSemaine le num�ro de semaine s�lectionn�e
-     * @return hashMap d'evenenemnt
+     * Tri le tableau d'événements
      */
+    public void sort() {
+        Arrays.sort(this.tabEvenements);
+    }
+
+    /**
+     * Renvoie le nombre d'événements dans l'agenda
+     *
+     * @return un entier
+     */
+    public int getLongueur() {
+        return tabEvenements.length;
+    }
+
+    /**
+     * Fait un tri fusion sur le tableau d'événements grâce à une méthode triFusion
+     *
+     * @see Agenda#triFusion(Comparable[], int, int)
+     */
+    public void triFusion() {
+        Object[] obj = this.triFusion((Comparable[]) this.tabEvenements, 0, this.nbEvenements).toArray();
+        this.tabEvenements = Arrays.copyOf(obj, obj.length, Evenement[].class);
+    }
+
+    /**
+     * Fait un tri fusion sur le tableau donné en paramètre et retourne une ArrayList
+     *
+     * @param tab         le tableau d'événements
+     * @param indiceDebut l'indice de début
+     * @param longueur    la longueur du tableau
+     * @return une ArrayList
+     * @see Agenda#listEvenements
+     * @see Agenda#fusion(ArrayList, ArrayList)
+     */
+    public ArrayList<Comparable> triFusion(Comparable[] tab, int indiceDebut, int longueur) {
+        if (longueur == 1) {
+            ArrayList<Comparable> arrayList = new ArrayList();
+            arrayList.add(tab[indiceDebut]);
+            return arrayList;
+        } else {
+            return this.fusion(this.triFusion(tab, indiceDebut, longueur / 2), this.triFusion(tab, indiceDebut + longueur / 2, longueur - longueur / 2));
+        }
+    }
+
+    /**
+     * Fusionne deux listes
+     *
+     * @param liste1 Première liste à fusionner
+     * @param liste2 Deuxième liste à fusionner
+     * @return une Arraylist
+     */
+    public ArrayList<Comparable> fusion(ArrayList<Comparable> liste1, ArrayList<Comparable> liste2) {
+        if (liste1.isEmpty()) {
+            return liste2;
+        } else if (liste2.isEmpty()) {
+            return liste1;
+        } else {
+            new ArrayList();
+            Comparable premierDeListe1 = liste1.get(0);
+            Comparable premierDeListe2 = liste2.get(0);
+            ArrayList arrayList;
+            if (premierDeListe1.compareTo(premierDeListe2) <= 0) {
+                liste1.remove(0);
+                arrayList = this.fusion(liste1, liste2);
+                arrayList.add(0, premierDeListe1);
+            } else {
+                liste2.remove(0);
+                arrayList = this.fusion(liste1, liste2);
+                arrayList.add(0, premierDeListe2);
+            }
+
+            return arrayList;
+        }
+    }
+
+    public Evenement[] getTabEvenements() {
+        return tabEvenements;
+    }
+
+    public ArrayList<Evenement> getListEvenements() {
+        return listEvenements;
+    }
 }
-/**
- * @author Antoine Chaud
- */

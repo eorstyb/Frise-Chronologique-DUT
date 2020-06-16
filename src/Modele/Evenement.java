@@ -1,6 +1,8 @@
 package Modele;
 
-public class Evenement {
+import java.io.Serializable;
+
+public class Evenement implements Serializable {
     //champs
     private Date date;
     private String titre;
@@ -15,6 +17,11 @@ public class Evenement {
         description = parDescription;
         chemin_image = parChemin_image;
         poids = parPoids;
+    }
+
+    public int compareTo(Evenement parEvt) {
+        int precede = this.date.compareTo(parEvt.date);
+        return precede == 0 ? (this.titre).compareTo(parEvt.titre): precede;
     }
 
     public Date getDate() { return date;}

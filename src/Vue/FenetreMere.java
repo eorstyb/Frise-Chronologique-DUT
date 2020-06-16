@@ -15,6 +15,7 @@ public class FenetreMere extends JFrame{
     private JMenuBar menu = new JMenuBar();
     private JMenuItem itemCreation = new JMenuItem("Création");
     private JMenuItem itemAffichage = new JMenuItem("Affichage");
+    private JMenuItem itemEnregistrer = new JMenuItem("Enregistrer");
     private JMenuItem itemFermer = new JMenuItem("Fermer");
 
     public FenetreMere() {
@@ -29,10 +30,12 @@ public class FenetreMere extends JFrame{
         this.setJMenuBar(menu);
         itemCreation.addActionListener(panelMere);
         itemAffichage.addActionListener(panelMere);
+        itemEnregistrer.addActionListener(panelMere);
         itemFermer.addActionListener(panelMere);
 
         menu.add(itemCreation);
         menu.add(itemAffichage);
+        menu.add(itemEnregistrer);
         menu.add(itemFermer);
     }
 

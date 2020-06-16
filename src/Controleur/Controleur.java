@@ -1,26 +1,23 @@
 package Controleur;
 
-import Constants.Constantes;
+import Modele.Agenda;
 import Modele.Date;
 import Modele.Evenement;
+import Modele.Frise;
 import Vue.PanelAffichage;
 import Vue.PanelCreation;
-import Vue.PanelFormulaire;
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
-
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Controleur implements ActionListener {
     //champs
-    PanelCreation panelCreation;
-    PanelAffichage panelAffichage;
-    Date dateDebut;
-    Date dateFin;
-    String intitule;
-    String cheminFichier;
-    //Agenda agenda;
+    private PanelCreation panelCreation;
+    private PanelAffichage panelAffichage;
+    private Date dateDebut;
+    private Date dateFin;
+    private String intitule;
+    private String cheminFichier;
+    private Frise frise;
 
     //constructeur
     public Controleur(PanelCreation parPanelCreation, PanelAffichage parPanelAffichage) {
@@ -36,19 +33,17 @@ public class Controleur implements ActionListener {
             dateDebut = new Date(panelCreation.getJourDebut().getSelectedIndex(),
                     panelCreation.getMoisDebut().getSelectedIndex(),
                     panelCreation.getAnneeDebut().getItemAt(panelCreation.getAnneeDebut().getSelectedIndex()));
-            Constantes.DATEDEBUT = dateDebut;
 
             dateFin  = new Date(panelCreation.getJourFin().getSelectedIndex(),
                     panelCreation.getMoisFin().getSelectedIndex(),
                     panelCreation.getAnneeFin().getItemAt(panelCreation.getAnneeFin().getSelectedIndex()));
-            Constantes.DATEFIN = dateFin;
 
             intitule = panelCreation.getEntreeIntitule().getText();
-            Constantes.INTITULEFRISE = intitule;
 
             cheminFichier = panelCreation.getEntreeCheminFichier().getText();
-            Constantes.CHEMINFICHIER = cheminFichier;
 
+            frise = new Frise(new Agenda(), dateDebut, dateFin, intitule, cheminFichier);
+            panelCreation.setFrise(frise);
             panelCreation.showFormulaire(this);
         }
 
@@ -60,6 +55,8 @@ public class Controleur implements ActionListener {
             Evenement evt = new Evenement(dateEvt, panelCreation.getPanelForm().getEntreeNomEvenement().getText(),
                     panelCreation.getPanelForm().getEntreeDescription().getText(), panelCreation.getPanelForm().getEntreeCheminImage().getText(),
                     panelCreation.getPanelForm().getEntreePoids().getItemAt(panelCreation.getPanelForm().getEntreePoids().getSelectedIndex()));
+
+            frise.getAgenda().ajout(evt);
         }
     }
 }
