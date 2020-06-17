@@ -4,11 +4,12 @@ import Modele.Agenda;
 import Modele.Date;
 import Modele.Evenement;
 import Modele.Frise;
-import com.sun.org.apache.xml.internal.utils.SystemIDResolver;
 
+import javax.sql.rowset.spi.SyncResolver;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.TreeSet;
 
@@ -17,51 +18,83 @@ public class ModeleTable extends DefaultTableModel {
     //private Date EvenementDate;
     private String[] ColumnNames;
     private Frise frise;
+    private Agenda agenda;
     private int COLUMN = 14;
     private final int ROW = 4;
     private PanelAffichage panelAffichage;
+    private Date[] datesColonnes;
 
     //constructeur
-    public ModeleTable(Frise parFrise, PanelAffichage panelAffichage){
+    public ModeleTable(Frise parFrise, PanelAffichage parPanelAffichage) {
         System.out.println("ModeleTable debut");
-        this.panelAffichage = panelAffichage;
+        this.panelAffichage = parPanelAffichage;
         frise = parFrise;
-        Date date1 = new Date(16,06,2020);
-        Date date2 = new Date(16,11,2020);
-        Date debut = date1;
-        Date fin = date2;
+        agenda = frise.getAgenda();
+        Date debut = frise.getDateDeDebut();
+        Date fin = frise.getDateDeFin();
         int i = 0;
+        System.out.println(debut.toString());
+        System.out.println(fin.toString());
 
-        while (debut.compareTo(fin) != 0){
-           fin = fin.dateDeLaVeille();
-           i++;
+        while (debut.compareTo(fin) != 0) {
+            fin = fin.dateDeLaVeille();
+            i++;
         }
-
+        System.out.println("Fin while");
         int periode = i;
-        periode = periode/COLUMN;
+        periode = periode / COLUMN - 1;
 
         this.setColumnCount(COLUMN);
         this.setRowCount(ROW);
 
-        ColumnNames = new String[COLUMN + 1];
+        ColumnNames = new String[COLUMN];
+        datesColonnes = new Date[COLUMN];
         int j = 1;
         ColumnNames[0] = debut.toString();
-        for(int cpt = 0; cpt > -1; cpt++){
-            if(cpt == periode) {
+        datesColonnes[0] = debut;
+        for (int cpt = 0; cpt > -1; cpt++) {
+            if (cpt == periode) {
                 ColumnNames[j] = debut.toString();
+                datesColonnes[j] = debut;
                 j += 1;
-                if(j == COLUMN -  1)
+                if (j == COLUMN - 1)
                     break;
                 else
                     cpt = 0;
             }
             debut = debut.dateDuLendemain();
         }
-
-        for(String s : ColumnNames)
-            System.out.println(s);
+        datesColonnes[COLUMN - 1] = frise.getDateDeFin();
+        ColumnNames[COLUMN - 1] = frise.getDateDeFin().toString();
+        for (Date s : datesColonnes)
+            System.out.println(s.toString());
         this.setColumnIdentifiers(ColumnNames);
+        setFrise(frise);
+    }
 
-        //EvenementDate = panelAffichage.getPanelDiapo().getPanelEvenement().getEvenementDate();
+    public void setFrise(Frise parFrise) {
+        this.frise = parFrise;
+        this.agenda = frise.getAgenda();
+        Evenement[] tabEvenements = new Evenement[100];
+        ArrayList<Evenement> arrayEvt = agenda.getListEvenements();
+        arrayEvt.sort(Evenement::compareTo);
+        Iterator iterator = arrayEvt.iterator();
+        int i = 0;
+        while (iterator.hasNext()) {
+            tabEvenements[i] = (Evenement) iterator.next();
+            i++;
+        }
+        System.out.println(datesColonnes.length);
+        if (tabEvenements[0] != null) {
+            for (Evenement evt : tabEvenements) {
+                i = 1;
+                while (i < COLUMN) {
+                    if (evt.getDate().compareTo(datesColonnes[i - 1]) >= 0 && evt.getDate().compareTo(datesColonnes[i]) <= 0) {
+                        this.setValueAt(evt, i, evt.getPoids());
+                    }
+                    i += 1;
+                }
+            }
+        }
     }
 }

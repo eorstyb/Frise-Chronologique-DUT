@@ -12,7 +12,7 @@ public class PanelCreation extends JPanel {
     private JLabel labelTitre = new JLabel("Création de la frise");
     private String cheminFichierSauvegarde;
     private JLabel labelIntitule = new JLabel("Intitulé");
-    private JTextField entreeIntitule = new JTextField(5);
+    private JTextField entreeIntitule = new JTextField(15);
     private JLabel labelDateDebut = new JLabel("Date de début");
     private JComboBox<Integer> jourDebut = new JComboBox<Integer>();
     private JComboBox<String> moisDebut = new JComboBox<String>();
@@ -33,28 +33,29 @@ public class PanelCreation extends JPanel {
         this.add(panelForm);
         enregistreEcouteur(controleur);
     }
+
     public PanelCreation() {
         setLayout(new GridBagLayout());
         GridBagConstraints contrainte = new GridBagConstraints();
-        //contrainte.fill = 1;
-        //contrainte.insets = new Insets(20, 220, 20, 20);
-        //contrainte.anchor = 20;
+        contrainte.insets = new Insets(20, 20, 20, 20);
 
         contrainte.gridx = 0;
         contrainte.gridy = 0;
-        contrainte.gridwidth = GridBagConstraints.REMAINDER;
         contrainte.anchor = GridBagConstraints.CENTER;
         this.add(labelTitre, contrainte);
+
         contrainte.gridx = 0;
         contrainte.gridy = 1;
         contrainte.anchor = GridBagConstraints.LINE_START;
         this.add(labelIntitule, contrainte);
-        contrainte.gridx = 2;
-        contrainte.gridwidth = GridBagConstraints.REMAINDER;
-        contrainte.anchor = GridBagConstraints.LINE_END;
+
+        contrainte.gridx = 1;
+        contrainte.gridwidth=3;
         this.add(entreeIntitule, contrainte);
+
         contrainte.gridx = 0;
         contrainte.gridy = 2;
+        contrainte.gridwidth=1;
         contrainte.anchor = GridBagConstraints.LINE_START;
         this.add(labelDateDebut, contrainte);
 
@@ -62,7 +63,6 @@ public class PanelCreation extends JPanel {
             jourDebut.addItem(i);
             jourFin.addItem(i);
         }
-        jourDebut.setPreferredSize(new Dimension(100,0));
         contrainte.gridx = 1;
         this.add(jourDebut, contrainte);
 
@@ -78,7 +78,6 @@ public class PanelCreation extends JPanel {
             anneeFin.addItem(i);
         }
         contrainte.gridx = 3;
-        contrainte.gridwidth = GridBagConstraints.REMAINDER;
         contrainte.anchor = GridBagConstraints.LINE_END;
         this.add(anneeDebut, contrainte);
 
@@ -94,7 +93,6 @@ public class PanelCreation extends JPanel {
         this.add(moisFin, contrainte);
 
         contrainte.gridx = 3;
-        contrainte.gridwidth = GridBagConstraints.REMAINDER;
         contrainte.anchor = GridBagConstraints.LINE_END;
         this.add(anneeFin, contrainte);
 
@@ -103,22 +101,16 @@ public class PanelCreation extends JPanel {
         contrainte.anchor = GridBagConstraints.LINE_START;
         this.add(labelCheminFichier, contrainte);
 
+        contrainte.gridy = 4;
         contrainte.gridx = 1;
-        contrainte.gridwidth = GridBagConstraints.REMAINDER;
-        contrainte.anchor = GridBagConstraints.LINE_END;
-        this.add(entreeCheminFichier);
+        contrainte.gridwidth=3;
+        this.add(entreeCheminFichier, contrainte);
 
         contrainte.gridy = 5;
         contrainte.gridx = 4;
-        contrainte.gridwidth = GridBagConstraints.REMAINDER;
         contrainte.anchor = GridBagConstraints.PAGE_END;
+        contrainte.gridwidth=1;
         this.add(valider, contrainte);
-
-        /*this.labelCheminFichier.setLabelFor(entreeCheminFichier);
-        this.labelDateDebut.setLabelFor(jourDebut);
-        this.labelDateFin.setLabelFor(jourFin);
-        this.labelIntitule.setLabelFor(entreeIntitule);
-    */
     }
 
 

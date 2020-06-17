@@ -3,7 +3,6 @@ package Vue;
 import Controleur.Controleur;
 import Modele.Frise;
 import Modele.LectureEcriture;
-import com.sun.org.apache.xml.internal.utils.SystemIDResolver;
 
 import javax.swing.*;
 import java.awt.*;

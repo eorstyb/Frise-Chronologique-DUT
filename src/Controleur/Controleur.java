@@ -3,8 +3,6 @@ package Controleur;
 import Modele.*;
 import Vue.PanelAffichage;
 import Vue.PanelCreation;
-import com.sun.org.apache.xml.internal.utils.SystemIDResolver;
-import javafx.scene.layout.Pane;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,14 +22,12 @@ public class Controleur implements ActionListener {
 
     //constructeur
     public Controleur(PanelCreation parPanelCreation, PanelAffichage parPanelAffichage) {
-        System.out.println("Constructeur controleur 1");
         panelCreation = parPanelCreation;
         panelAffichage = parPanelAffichage;
         panelCreation.enregistreEcouteur(this);
     }
 
     public Controleur(Frise[] parTabFrises, Frise parFrise, PanelCreation parPanelCreation, PanelAffichage parPanelAffichage) {
-        System.out.println("Constructeur controleur 2");
         tabFrises = parTabFrises;
         frise = parFrise;
         fichier = new File(frise.getCheminFichier());
@@ -44,12 +40,14 @@ public class Controleur implements ActionListener {
     //méthodes
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == panelCreation.getValider()) {
-            dateDebut = new Date(panelCreation.getJourDebut().getSelectedIndex(),
-                    panelCreation.getMoisDebut().getSelectedIndex(),
+            dateDebut = new Date(panelCreation.getJourDebut().getSelectedIndex() + 1,
+                    panelCreation.getMoisDebut().getSelectedIndex() + 1,
                     panelCreation.getAnneeDebut().getItemAt(panelCreation.getAnneeDebut().getSelectedIndex()));
-            dateFin  = new Date(panelCreation.getJourFin().getSelectedIndex(),
-                    panelCreation.getMoisFin().getSelectedIndex(),
+
+            dateFin  = new Date(panelCreation.getJourFin().getSelectedIndex() + 1,
+                    panelCreation.getMoisFin().getSelectedIndex() + 1,
                     panelCreation.getAnneeFin().getItemAt(panelCreation.getAnneeFin().getSelectedIndex()));
+
             intitule = panelCreation.getEntreeIntitule().getText();
             cheminFichier = panelCreation.getEntreeCheminFichier().getText();
             frise = new Frise(new Agenda(), dateDebut, dateFin, intitule, cheminFichier);

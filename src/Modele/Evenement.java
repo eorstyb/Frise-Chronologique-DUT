@@ -1,5 +1,6 @@
 package Modele;
 
+import javax.swing.*;
 import java.io.Serializable;
 
 public class Evenement implements Serializable {
@@ -10,7 +11,7 @@ public class Evenement implements Serializable {
     private String description;
     private String chemin_image;
     private int poids;
-
+    private ImageIcon imageEvt;
     /**
      * @param parDate
      * @param parTitre
@@ -25,6 +26,7 @@ public class Evenement implements Serializable {
         description = parDescription;
         chemin_image = parChemin_image;
         poids = parPoids;
+        imageEvt = new ImageIcon(chemin_image);
     }
 
     public int compareTo(Evenement parEvt) {
@@ -38,10 +40,18 @@ public class Evenement implements Serializable {
 
     public Date getDate() { return date;}
 
+    public int getPoids() {
+        return poids;
+    }
+
     public String getTitre(){ return titre;}
 
     public String getChemin_image() {
         return chemin_image;
+    }
+
+    public ImageIcon getImageEvt() {
+        return imageEvt;
     }
 
     public String getDescription(){ return description;}

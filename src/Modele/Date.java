@@ -83,6 +83,7 @@ public class Date implements Serializable {
             case 11: chaine += "novembre"; break;
             case 12: chaine += "décembre"; break;
         }
+        chaine += " " + annee;
         return chaine;
     }
 

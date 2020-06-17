@@ -6,6 +6,7 @@ import Modele.Agenda;
 import Modele.Date;
 import Modele.Evenement;
 import Modele.Frise;
+import javafx.scene.layout.Pane;
 
 import javax.swing.JPanel;
 
@@ -36,6 +37,7 @@ public class PanelAffichage extends JPanel {
         frise = parFrise;
         agenda = frise.getAgenda();
         panelDiapo = new PanelDiapo(agenda, this);
+        panelFrise = new PanelFrise(frise, this);
     }
 
     //méthodes
