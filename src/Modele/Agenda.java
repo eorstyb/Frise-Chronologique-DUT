@@ -20,6 +20,9 @@ public class Agenda implements Serializable {
      */
     private Evenement[] tabEvenements = new Evenement[15];
 
+
+    private static final long serialVersionUID = 2565864553245L;
+
     /**
      * Entier permettant de connaître le nombre d'événements dans l'objet agenda
      */
@@ -78,7 +81,7 @@ public class Agenda implements Serializable {
         String chaine = "";
 
         for (int i = 0; i < this.nbEvenements; ++i) {
-            chaine = chaine + this.tabEvenements[i] + "\n";
+            chaine = chaine + this.tabEvenements[i].toString() + "\n";
         }
 
         return chaine;

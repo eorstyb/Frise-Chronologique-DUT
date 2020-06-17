@@ -24,12 +24,14 @@ public class Controleur implements ActionListener {
 
     //constructeur
     public Controleur(PanelCreation parPanelCreation, PanelAffichage parPanelAffichage) {
+        System.out.println("Constructeur controleur 1");
         panelCreation = parPanelCreation;
         panelAffichage = parPanelAffichage;
         panelCreation.enregistreEcouteur(this);
     }
 
     public Controleur(Frise[] parTabFrises, Frise parFrise, PanelCreation parPanelCreation, PanelAffichage parPanelAffichage) {
+        System.out.println("Constructeur controleur 2");
         tabFrises = parTabFrises;
         frise = parFrise;
         fichier = new File(frise.getCheminFichier());
@@ -45,15 +47,11 @@ public class Controleur implements ActionListener {
             dateDebut = new Date(panelCreation.getJourDebut().getSelectedIndex(),
                     panelCreation.getMoisDebut().getSelectedIndex(),
                     panelCreation.getAnneeDebut().getItemAt(panelCreation.getAnneeDebut().getSelectedIndex()));
-
             dateFin  = new Date(panelCreation.getJourFin().getSelectedIndex(),
                     panelCreation.getMoisFin().getSelectedIndex(),
                     panelCreation.getAnneeFin().getItemAt(panelCreation.getAnneeFin().getSelectedIndex()));
-
             intitule = panelCreation.getEntreeIntitule().getText();
-
             cheminFichier = panelCreation.getEntreeCheminFichier().getText();
-
             frise = new Frise(new Agenda(), dateDebut, dateFin, intitule, cheminFichier);
             fichier = new File(frise.getCheminFichier());
             int i = 0;

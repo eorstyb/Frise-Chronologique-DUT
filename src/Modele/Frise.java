@@ -3,6 +3,7 @@ package Modele;
 import java.io.Serializable;
 
 public class Frise implements Serializable {
+    private static final long serialVersionUID = 4561238967452L;
     private Agenda agenda;
     private Date dateDeDebut;
     private Date dateDeFin;

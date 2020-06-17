@@ -31,27 +31,31 @@ public class PanelCreation extends JPanel {
     public PanelCreation(Frise frise, Controleur controleur) {
         panelForm = new PanelFormulaire(frise);
         this.add(panelForm);
-        panelForm.enregistreEcouteur(controleur);
+        enregistreEcouteur(controleur);
     }
     public PanelCreation() {
         setLayout(new GridBagLayout());
         GridBagConstraints contrainte = new GridBagConstraints();
-        contrainte.fill = 10;
-        contrainte.insets = new Insets(5, 5, 5, 5);
-        contrainte.anchor = 20;
+        //contrainte.fill = 1;
+        //contrainte.insets = new Insets(20, 220, 20, 20);
+        //contrainte.anchor = 20;
 
         contrainte.gridx = 0;
         contrainte.gridy = 0;
         contrainte.gridwidth = GridBagConstraints.REMAINDER;
+        contrainte.anchor = GridBagConstraints.CENTER;
         this.add(labelTitre, contrainte);
         contrainte.gridx = 0;
-        contrainte.gridy = 1;;
+        contrainte.gridy = 1;
+        contrainte.anchor = GridBagConstraints.LINE_START;
         this.add(labelIntitule, contrainte);
         contrainte.gridx = 2;
         contrainte.gridwidth = GridBagConstraints.REMAINDER;
+        contrainte.anchor = GridBagConstraints.LINE_END;
         this.add(entreeIntitule, contrainte);
         contrainte.gridx = 0;
         contrainte.gridy = 2;
+        contrainte.anchor = GridBagConstraints.LINE_START;
         this.add(labelDateDebut, contrainte);
 
         for(int i = 1; i < 32; i++) {
@@ -59,49 +63,55 @@ public class PanelCreation extends JPanel {
             jourFin.addItem(i);
         }
         jourDebut.setPreferredSize(new Dimension(100,0));
-        contrainte.gridx = 3;
+        contrainte.gridx = 1;
         this.add(jourDebut, contrainte);
 
         for(int i = 0; i < 12; i++) {
             moisDebut.addItem(MOIS[i]);
             moisFin.addItem(MOIS[i]);
         }
-        contrainte.gridx = 6;
+        contrainte.gridx = 2;
         this.add(moisDebut, contrainte);
 
         for(int i = 2000; i < 2021; i++) {
             anneeDebut.addItem(i);
             anneeFin.addItem(i);
         }
-        contrainte.gridx = 15;
+        contrainte.gridx = 3;
         contrainte.gridwidth = GridBagConstraints.REMAINDER;
+        contrainte.anchor = GridBagConstraints.LINE_END;
         this.add(anneeDebut, contrainte);
 
         contrainte.gridx = 0;
         contrainte.gridy = 3;
+        contrainte.anchor = GridBagConstraints.LINE_START;
         this.add(labelDateFin, contrainte);
 
-        contrainte.gridx = 3;
+        contrainte.gridx = 1;
         this.add(jourFin, contrainte);
 
-        contrainte.gridx = 6;
+        contrainte.gridx = 2;
         this.add(moisFin, contrainte);
 
-        contrainte.gridx = 15;
+        contrainte.gridx = 3;
         contrainte.gridwidth = GridBagConstraints.REMAINDER;
+        contrainte.anchor = GridBagConstraints.LINE_END;
         this.add(anneeFin, contrainte);
 
         contrainte.gridy = 4;
         contrainte.gridx = 0;
+        contrainte.anchor = GridBagConstraints.LINE_START;
         this.add(labelCheminFichier, contrainte);
 
-        contrainte.gridx += 2;
+        contrainte.gridx = 1;
         contrainte.gridwidth = GridBagConstraints.REMAINDER;
+        contrainte.anchor = GridBagConstraints.LINE_END;
         this.add(entreeCheminFichier);
 
-        //contrainte.gridy = ;
-        contrainte.gridx = 8;
+        contrainte.gridy = 5;
+        contrainte.gridx = 4;
         contrainte.gridwidth = GridBagConstraints.REMAINDER;
+        contrainte.anchor = GridBagConstraints.PAGE_END;
         this.add(valider, contrainte);
 
         /*this.labelCheminFichier.setLabelFor(entreeCheminFichier);
@@ -123,7 +133,10 @@ public class PanelCreation extends JPanel {
 
     //méthodes
     public void enregistreEcouteur(Controleur controleur) {
-        getValider().addActionListener(controleur);
+        System.out.println("enregistreEcouteur");
+        this.valider.addActionListener(controleur);
+        if(panelForm != null)
+            panelForm.getValider().addActionListener(controleur);
     }
 
     public JButton getValider() {

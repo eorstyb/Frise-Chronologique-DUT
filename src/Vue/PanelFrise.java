@@ -11,8 +11,6 @@ public class PanelFrise extends JPanel {
     private JTable tableFrise;
     private ModeleTable modele;
 
-
-
     //constructeur
     public PanelFrise(Frise frise,PanelAffichage panelAffichage) {
 

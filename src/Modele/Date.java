@@ -9,6 +9,7 @@ import java.util.GregorianCalendar;
  */
 public class Date implements Serializable {
     //champs
+    private static final long serialVersionUID = 5789866515461L;
     private int jour;
     private int mois;
     private int annee;
@@ -16,7 +17,7 @@ public class Date implements Serializable {
 
 //constructeurs
 
-    public Date(Date date) {
+    public Date() {
         GregorianCalendar today = new GregorianCalendar();
         annee = today.get(Calendar.YEAR);
         mois = today.get(Calendar.MONTH) + 1;
@@ -54,6 +55,35 @@ public class Date implements Serializable {
         else if (mois > 1)
             return new Date(Date.dernierJourDuMois(mois - 1, annee), mois - 1, annee);
         else return new Date(31, 12, annee - 1);
+    }
+
+    public String toString () {
+        String chaine = new String();
+        switch (jourSemaine) {
+            case 7: chaine = "dimanche"; break;
+            case 1: chaine = "lundi"; break;
+            case 2: chaine = "mardi"; break;
+            case 3: chaine = "mercredi"; break;
+            case 4: chaine = "jeudi"; break;
+            case 5: chaine = "vendredi"; break;
+            case 6: chaine = "samedi"; break;
+        }
+        chaine += " " + jour + " ";
+        switch (mois) {
+            case 1: chaine += "janvier"; break;
+            case 2: chaine += "février"; break;
+            case 3: chaine += "mars"; break;
+            case 4: chaine += "avril"; break;
+            case 5: chaine += "mai"; break;
+            case 6: chaine += "juin"; break;
+            case 7: chaine += "juillet"; break;
+            case 8: chaine += "août"; break;
+            case 9: chaine += "septembre"; break;
+            case 10: chaine += "octobre"; break;
+            case 11: chaine += "novembre"; break;
+            case 12: chaine += "décembre"; break;
+        }
+        return chaine;
     }
 
     /**

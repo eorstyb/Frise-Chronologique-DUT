@@ -4,8 +4,6 @@ import Controleur.Controleur;
 import Modele.Agenda;
 import Modele.Evenement;
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Iterator;
 
 public class PanelDiapo extends JPanel {
@@ -14,10 +12,12 @@ public class PanelDiapo extends JPanel {
     private JButton next;
     private JButton previous;
     private PanelEvenement panelEvenement;
+    private PanelAffichage panelAffichage;
     private Agenda agenda;
     private Iterator iterator;
 
-    public PanelDiapo(Agenda agenda,PanelAffichage panelAffichage){
+    public PanelDiapo(Agenda agenda, PanelAffichage panelAffichage){
+        this.panelAffichage = panelAffichage;
         this.agenda = agenda;
         next = new JButton(">");
         previous = new JButton("<");
@@ -33,5 +33,4 @@ public class PanelDiapo extends JPanel {
     public PanelEvenement getPanelEvenement() {
         return panelEvenement;
     }
-
 }

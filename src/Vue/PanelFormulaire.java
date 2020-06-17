@@ -2,6 +2,7 @@ package Vue;
 
 import Controleur.Controleur;
 import Modele.Frise;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -11,7 +12,7 @@ public class PanelFormulaire extends JPanel {
     private JLabel nomEvenement = new JLabel("Nom de l'événement");
     private JTextField entreeNomEvenement = new JTextField(20);
     private JLabel description = new JLabel("Description de l'événement");
-    private JTextArea entreeDescription = new JTextArea(5,30);
+    private JTextArea entreeDescription = new JTextArea(5, 30);
     private JLabel dateEvenement = new JLabel("Date de l'événement");
     private JComboBox<Integer> entreeJour = new JComboBox<Integer>();
     private JComboBox<String> entreeMois = new JComboBox<String>();
@@ -34,7 +35,7 @@ public class PanelFormulaire extends JPanel {
 
         contraintes.gridx = 0;
         contraintes.gridy = 0;
-        titre.setSize(new Dimension(300,300));
+        titre.setSize(new Dimension(300, 300));
         this.add(titre, contraintes);
 
         contraintes.gridy += 4;
@@ -56,17 +57,17 @@ public class PanelFormulaire extends JPanel {
         this.add(dateEvenement, contraintes);
 
         contraintes.gridx += 1;
-        for(int i = 1; i < 32; i++)
+        for (int i = 1; i < 32; i++)
             entreeJour.addItem(i);
         this.add(entreeJour, contraintes);
 
         contraintes.gridx += 1;
-        for(int i = 0; i < 12; i++)
+        for (int i = 0; i < 12; i++)
             entreeMois.addItem(MOIS[i]);
         this.add(entreeMois, contraintes);
 
         contraintes.gridx += 1;
-        for(int i = frise.getDateDeDebut().getAnnee(); i < frise.getDateDeFin().getAnnee() + 1; i++)
+        for (int i = frise.getDateDeDebut().getAnnee(); i < frise.getDateDeFin().getAnnee() + 1; i++)
             entreeAnnee.addItem(i);
         this.add(entreeAnnee, contraintes);
 
@@ -75,7 +76,7 @@ public class PanelFormulaire extends JPanel {
         this.add(poidsEvenement, contraintes);
 
         contraintes.gridx += 2;
-        for(int i = 1; i < 11; i++)
+        for (int i = 1; i < 11; i++)
             entreePoids.addItem(i);
         this.add(entreePoids, contraintes);
 
