@@ -28,6 +28,10 @@ public class Evenement implements Serializable {
 
     public String getTitre(){ return titre;}
 
+    public String getChemin_image() {
+        return chemin_image;
+    }
+
     public String getDescription(){ return description;}
 
 

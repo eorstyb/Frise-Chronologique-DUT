@@ -1,15 +1,14 @@
 package Vue;
 
+import Controleur.Controleur;
 import Modele.Agenda;
 import Modele.Evenement;
-
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Iterator;
 
-public class PanelDiapo extends JPanel implements ActionListener {
+public class PanelDiapo extends JPanel {
 
     //champs
     private JButton next;
@@ -18,25 +17,21 @@ public class PanelDiapo extends JPanel implements ActionListener {
     private Agenda agenda;
     private Iterator iterator;
 
-    public PanelDiapo(Agenda agenda){
+    public PanelDiapo(Agenda agenda,PanelAffichage panelAffichage){
         this.agenda = agenda;
         next = new JButton(">");
         previous = new JButton("<");
         iterator = agenda.getListEvenements().iterator();
         panelEvenement = new PanelEvenement((Evenement) iterator.next());
-        next.addActionListener(this);
-        previous.addActionListener(this);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == next) {
-            if(iterator.hasNext())
-                panelEvenement = new PanelEvenement((Evenement) iterator.next());
-            else {
-                iterator = agenda.getListEvenements().iterator();
-                panelEvenement = new PanelEvenement((Evenement) iterator.next());
-            }
-        }
+    public void enregistreEcouteur(Controleur controleur) {
+        next.addActionListener(controleur);
+        previous.addActionListener(controleur);
     }
+
+    public PanelEvenement getPanelEvenement() {
+        return panelEvenement;
+    }
+
 }

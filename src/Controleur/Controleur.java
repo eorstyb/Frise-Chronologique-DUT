@@ -27,7 +27,6 @@ public class Controleur implements ActionListener {
         panelCreation = parPanelCreation;
         panelAffichage = parPanelAffichage;
         panelCreation.enregistreEcouteur(this);
-        panelAffichage.enregistreEcouteur(this);
     }
 
     public Controleur(Frise[] parTabFrises, Frise parFrise, PanelCreation parPanelCreation, PanelAffichage parPanelAffichage) {
@@ -62,6 +61,7 @@ public class Controleur implements ActionListener {
                 i += 1;
             tabFrises[i] = frise;
             panelAffichage = new PanelAffichage(frise);
+            panelAffichage.enregistreEcouteur(this);
             LectureEcriture.ecriture(fichier, tabFrises);
             panelCreation.setFrise(frise);
             panelCreation.showFormulaire(this);
@@ -78,6 +78,7 @@ public class Controleur implements ActionListener {
 
             frise.getAgenda().ajout(evt);
             LectureEcriture.ecriture(fichier, tabFrises);
+            panelAffichage.setFrise(frise);
         }
     }
 }

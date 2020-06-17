@@ -36,20 +36,19 @@ public class PanelCreation extends JPanel {
     public PanelCreation() {
         setLayout(new GridBagLayout());
         GridBagConstraints contrainte = new GridBagConstraints();
-        contrainte.fill = 1;
-        contrainte.insets = new Insets(20, 20, 20, 25);
+        contrainte.fill = 10;
+        contrainte.insets = new Insets(5, 5, 5, 5);
         contrainte.anchor = 20;
+
         contrainte.gridx = 0;
         contrainte.gridy = 0;
-        contrainte.gridheight = 1;
-        contrainte.gridwidth = 5;
+        contrainte.gridwidth = GridBagConstraints.REMAINDER;
         this.add(labelTitre, contrainte);
         contrainte.gridx = 0;
-        contrainte.gridy = 1;
-        contrainte.gridwidth = 1;
+        contrainte.gridy = 1;;
         this.add(labelIntitule, contrainte);
         contrainte.gridx = 2;
-        contrainte.gridwidth = 5;
+        contrainte.gridwidth = GridBagConstraints.REMAINDER;
         this.add(entreeIntitule, contrainte);
         contrainte.gridx = 0;
         contrainte.gridy = 2;
@@ -75,6 +74,7 @@ public class PanelCreation extends JPanel {
             anneeFin.addItem(i);
         }
         contrainte.gridx = 15;
+        contrainte.gridwidth = GridBagConstraints.REMAINDER;
         this.add(anneeDebut, contrainte);
 
         contrainte.gridx = 0;
@@ -88,25 +88,29 @@ public class PanelCreation extends JPanel {
         this.add(moisFin, contrainte);
 
         contrainte.gridx = 15;
+        contrainte.gridwidth = GridBagConstraints.REMAINDER;
         this.add(anneeFin, contrainte);
 
         contrainte.gridy = 4;
         contrainte.gridx = 0;
         this.add(labelCheminFichier, contrainte);
 
-        contrainte.gridy = 5;
-        contrainte.gridx = 0;
+        contrainte.gridx += 2;
+        contrainte.gridwidth = GridBagConstraints.REMAINDER;
         this.add(entreeCheminFichier);
 
-        contrainte.gridy = 6;
+        //contrainte.gridy = ;
         contrainte.gridx = 8;
+        contrainte.gridwidth = GridBagConstraints.REMAINDER;
         this.add(valider, contrainte);
 
-        this.labelCheminFichier.setLabelFor(entreeCheminFichier);
+        /*this.labelCheminFichier.setLabelFor(entreeCheminFichier);
         this.labelDateDebut.setLabelFor(jourDebut);
         this.labelDateFin.setLabelFor(jourFin);
         this.labelIntitule.setLabelFor(entreeIntitule);
+    */
     }
+
 
     public void showFormulaire(Controleur controleur) {
         panelForm = new PanelFormulaire(frise);

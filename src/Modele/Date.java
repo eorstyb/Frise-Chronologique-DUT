@@ -16,12 +16,12 @@ public class Date implements Serializable {
 
 //constructeurs
 
-    public Date(Date date){
-        GregorianCalendar today = new GregorianCalendar ();
-        annee = today.get (Calendar.YEAR);
-        mois = today.get (Calendar.MONTH)+1;
-        jour = today.get (Calendar.DAY_OF_MONTH);
-        jourSemaine = today.get (Calendar.DAY_OF_WEEK)-1;
+    public Date(Date date) {
+        GregorianCalendar today = new GregorianCalendar();
+        annee = today.get(Calendar.YEAR);
+        mois = today.get(Calendar.MONTH) + 1;
+        jour = today.get(Calendar.DAY_OF_MONTH);
+        jourSemaine = today.get(Calendar.DAY_OF_WEEK) - 1;
     }
 
     public Date(int parJour, int parMois, int parAnnee) {
@@ -32,45 +32,56 @@ public class Date implements Serializable {
 
     /**
      * retourne la date du lendemain de la date courante
+     *
      * @return une date
      */
-    public Date dateDuLendemain ()   {
-        if (jour < dernierJourDuMois(mois,annee))
-            return  new Date (jour+1,mois,annee);
+    public Date dateDuLendemain() {
+        if (jour < dernierJourDuMois(mois, annee))
+            return new Date(jour + 1, mois, annee);
         else if (mois < 12)
-            return new Date (1,mois+1,annee);
-        else return new Date (1,1,annee+1);
+            return new Date(1, mois + 1, annee);
+        else return new Date(1, 1, annee + 1);
     }
 
     /**
      * retourne le premier jour de la semaine contenant la date courante
+     *
      * @return une date
      */
-    public Date dateDeLaVeille () {
+    public Date dateDeLaVeille() {
         if (jour > 1)
-            return  new Date (jour-1,mois,annee);
+            return new Date(jour - 1, mois, annee);
         else if (mois > 1)
-            return new Date (Date.dernierJourDuMois(mois-1, annee),mois-1,annee);
-        else return  new Date (31,12,annee-1);
+            return new Date(Date.dernierJourDuMois(mois - 1, annee), mois - 1, annee);
+        else return new Date(31, 12, annee - 1);
     }
 
     /**
      * permet de retourner le dernier jour selon le mois et l'année donnés.
-     * @param parMois le mois choisi
+     *
+     * @param parMois  le mois choisi
      * @param parAnnee l'année choisi
      * @return un entier
      */
-    public static int dernierJourDuMois (int parMois, int parAnnee) {
+    public static int dernierJourDuMois(int parMois, int parAnnee) {
         switch (parMois) {
-            case 2 : if (estBissextile (parAnnee))  return 29 ; else return 28 ;
-            case 4 : 	 case 6 : 	 case 9 : 	 case 11 : return 30 ;
-            default : return 31 ;
+            case 2:
+                if (estBissextile(parAnnee)) return 29;
+                else return 28;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                return 30;
+            default:
+                return 31;
         }  // switch
     }
 
     /**
      * retourner un booléen afin de savoir si l'année en paramètre est une
      * année bissextile.
+     *
      * @param parAnnee Année selectionnée
      * @return un booléen
      */
@@ -79,7 +90,6 @@ public class Date implements Serializable {
     }
 
     /**
-     *
      * @return
      */
 
