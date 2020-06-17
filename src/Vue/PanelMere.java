@@ -3,7 +3,6 @@ package Vue;
 import Controleur.Controleur;
 import Modele.Frise;
 import Modele.LectureEcriture;
-import com.sun.org.apache.xml.internal.utils.SystemIDResolver;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,6 +12,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+
+import static Vue.CouleurConstantes.TEST;
 
 public class PanelMere extends JPanel implements ActionListener {
     //champs
@@ -32,7 +33,9 @@ public class PanelMere extends JPanel implements ActionListener {
 
     public PanelMere(FenetreMere parFenetreMere) throws IOException {
         this.setLayout(new CardLayout());
+        this.setForeground(TEST);
         fenetreMere = parFenetreMere;
+
 
         initFrises();
         if(tabFrises[0] != null) {

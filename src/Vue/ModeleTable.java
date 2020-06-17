@@ -4,8 +4,6 @@ import Modele.Agenda;
 import Modele.Date;
 import Modele.Evenement;
 import Modele.Frise;
-import com.sun.org.apache.xml.internal.utils.SystemIDResolver;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -18,18 +16,19 @@ public class ModeleTable extends DefaultTableModel {
     private String[] ColumnNames;
     private Frise frise;
     private int COLUMN = 14;
-    private final int ROW = 4;
+    private final int ROW = 11;
     private PanelAffichage panelAffichage;
 
     //constructeur
     public ModeleTable(Frise parFrise, PanelAffichage panelAffichage){
-        System.out.println("ModeleTable debut");
         this.panelAffichage = panelAffichage;
         frise = parFrise;
+
         Date date1 = new Date(16,06,2020);
         Date date2 = new Date(16,11,2020);
         Date debut = date1;
         Date fin = date2;
+
         int i = 0;
 
         while (debut.compareTo(fin) != 0){
@@ -60,6 +59,7 @@ public class ModeleTable extends DefaultTableModel {
 
         for(String s : ColumnNames)
             System.out.println(s);
+        System.out.println("Fin");
         this.setColumnIdentifiers(ColumnNames);
 
         //EvenementDate = panelAffichage.getPanelDiapo().getPanelEvenement().getEvenementDate();

@@ -6,6 +6,8 @@ import Modele.Frise;
 import javax.swing.*;
 import java.awt.*;
 
+import static Vue.CouleurConstantes.SOBRE;
+
 public class PanelFrise extends JPanel {
     //champs
     private JTable tableFrise;
@@ -20,9 +22,10 @@ public class PanelFrise extends JPanel {
                 ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
                 ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         this.add(scrollPane);
-        scrollPane.setPreferredSize(new Dimension(500,310));
+        scrollPane.setPreferredSize(new Dimension(1200,800));
         tableFrise.getTableHeader().setResizingAllowed(false);
         tableFrise.getTableHeader().setReorderingAllowed(false);
+        tableFrise.getTableHeader().setForeground(SOBRE);
 
     }
 

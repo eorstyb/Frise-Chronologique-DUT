@@ -3,8 +3,7 @@ package Controleur;
 import Modele.*;
 import Vue.PanelAffichage;
 import Vue.PanelCreation;
-import com.sun.org.apache.xml.internal.utils.SystemIDResolver;
-import javafx.scene.layout.Pane;
+
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
