@@ -4,8 +4,6 @@ import Controleur.Controleur;
 import Modele.CelluleRenderer;
 import Modele.Evenement;
 import Modele.Frise;
-import com.sun.scenario.effect.ImageDataRenderer;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -18,7 +16,7 @@ public class PanelFrise extends JPanel {
 
     //constructeur
     public PanelFrise(Frise frise,PanelAffichage panelAffichage) {
-        modele = new ModeleTable(frise,panelAffichage);
+        modele = new ModeleTable(frise, panelAffichage);
         tableFrise = new JTable (modele);
         JScrollPane scrollPane= new JScrollPane(tableFrise ,
                 ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,

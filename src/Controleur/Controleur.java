@@ -72,6 +72,7 @@ public class Controleur implements ActionListener {
                     panelCreation.getPanelForm().getEntreePoids().getItemAt(panelCreation.getPanelForm().getEntreePoids().getSelectedIndex()));
 
             frise.getAgenda().ajout(evt);
+            frise.getAgenda().getTabEvenements().toString();
             LectureEcriture.ecriture(fichier, tabFrises);
             panelAffichage.setFrise(frise);
         }

@@ -22,7 +22,8 @@ public class PanelDiapo extends JPanel {
         next = new JButton(">");
         previous = new JButton("<");
         iterator = agenda.getListEvenements().iterator();
-        panelEvenement = new PanelEvenement((Evenement) iterator.next());
+        if(iterator.hasNext())
+            panelEvenement = new PanelEvenement((Evenement) iterator.next());
     }
 
     public void enregistreEcouteur(Controleur controleur) {

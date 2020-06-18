@@ -2,7 +2,6 @@ package Vue;
 
 import Controleur.Controleur;
 import Modele.Frise;
-
 import javax.swing.*;
 import java.awt.*;
 
