@@ -13,6 +13,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
+import static Vue.CouleurConstantes.TEST;
+
 public class PanelMere extends JPanel implements ActionListener {
     //champs
     private PanelAccueil panelAccueil = new PanelAccueil();
@@ -31,7 +33,9 @@ public class PanelMere extends JPanel implements ActionListener {
 
     public PanelMere(FenetreMere parFenetreMere) throws IOException {
         this.setLayout(new CardLayout());
+        this.setForeground(TEST);
         fenetreMere = parFenetreMere;
+
 
         initFrises();
         if(tabFrises[0] != null) {

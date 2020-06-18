@@ -5,13 +5,9 @@ import Modele.Date;
 import Modele.Evenement;
 import Modele.Frise;
 
-import javax.sql.rowset.spi.SyncResolver;
-import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.TreeSet;
 
 public class ModeleTable extends DefaultTableModel {
     //champs
@@ -20,16 +16,16 @@ public class ModeleTable extends DefaultTableModel {
     private Frise frise;
     private Agenda agenda;
     private int COLUMN = 14;
-    private final int ROW = 4;
+    private final int ROW = 11;
     private PanelAffichage panelAffichage;
     private Date[] datesColonnes;
 
-    //constructeur
-    public ModeleTable(Frise parFrise, PanelAffichage parPanelAffichage) {
-        System.out.println("ModeleTable debut");
-        this.panelAffichage = parPanelAffichage;
+    //constructeu
+    public ModeleTable(Frise parFrise, PanelAffichage panelAffichage){
+        this.panelAffichage = panelAffichage;
         frise = parFrise;
         agenda = frise.getAgenda();
+
         Date debut = frise.getDateDeDebut();
         Date fin = frise.getDateDeFin();
         int i = 0;
@@ -64,10 +60,12 @@ public class ModeleTable extends DefaultTableModel {
             }
             debut = debut.dateDuLendemain();
         }
+
         datesColonnes[COLUMN - 1] = frise.getDateDeFin();
         ColumnNames[COLUMN - 1] = frise.getDateDeFin().toString();
         for (Date s : datesColonnes)
             System.out.println(s.toString());
+        System.out.println("Fin");
         this.setColumnIdentifiers(ColumnNames);
         setFrise(frise);
     }

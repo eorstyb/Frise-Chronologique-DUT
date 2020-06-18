@@ -9,6 +9,8 @@ import com.sun.scenario.effect.ImageDataRenderer;
 import javax.swing.*;
 import java.awt.*;
 
+import static Vue.CouleurConstantes.SOBRE;
+
 public class PanelFrise extends JPanel {
     //champs
     private JTable tableFrise;
@@ -22,13 +24,14 @@ public class PanelFrise extends JPanel {
                 ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
                 ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         this.add(scrollPane);
-        scrollPane.setPreferredSize(new Dimension(500,310));
+        scrollPane.setPreferredSize(new Dimension(1200,800));
         tableFrise.getTableHeader().setResizingAllowed(false);
         tableFrise.getTableHeader().setReorderingAllowed(false);
         tableFrise.setRowHeight(100);
         tableFrise.setDefaultRenderer(Evenement.class, new CelluleRenderer());
         for (int i = 0; i < tableFrise.getColumnCount(); i++)
             tableFrise.getColumnModel().getColumn(i).setPreferredWidth(100);
+        tableFrise.getTableHeader().setForeground(SOBRE);
     }
 
     //méthodes
