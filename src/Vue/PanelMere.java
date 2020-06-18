@@ -18,7 +18,7 @@ public class PanelMere extends JPanel implements ActionListener {
     private PanelAccueil panelAccueil = new PanelAccueil();
     private PanelCreation panelCrea = new PanelCreation();
     private PanelAffichage panelAff = new PanelAffichage();
-    private JPopupMenu menuAide = new JPopupMenu();
+    private PanelAide panelAide = new PanelAide();
     private FenetreMere fenetreMere;
     private Controleur controleur;
     private JPopupMenu popupMenu = new JPopupMenu();
@@ -59,36 +59,36 @@ public class PanelMere extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource().equals(fenetreMere.getItemCreation())) {
             ((CardLayout) getLayout()).show(this, "Création");
-            this.remove(menuAide);
-            menuAide.setVisible(false);
-            menuAide.setEnabled(false);
+            this.remove(panelAide);
+            panelAide.setVisible(false);
+            panelAide.setEnabled(false);
             validate();
             repaint();
         }
 
         if(e.getSource().equals(fenetreMere.getItemAffichage())) {
             ((CardLayout) getLayout()).show(this, "Affichage");
-            this.remove(menuAide);
-            menuAide.setVisible(false);
-            menuAide.setEnabled(false);
+            this.remove(panelAide);
+            panelAide.setVisible(false);
+            panelAide.setEnabled(false);
             validate();
             repaint();
         }
 
         if(e.getSource().equals(fenetreMere.getItemAccueil())) {
             ((CardLayout) getLayout()).show(this, "Accueil");
-            this.remove(menuAide);
-            menuAide.setVisible(false);
-            menuAide.setEnabled(false);
+            this.remove(panelAide);
+            panelAide.setVisible(false);
+            panelAide.setEnabled(false);
             validate();
             repaint();
         }
 
         if(e.getSource().equals(fenetreMere.getItemAide())) {
-            menuAide.setSize(new Dimension(1000,1000));
-            menuAide.setLocation(700,400);
-            menuAide.setVisible(true);
-            menuAide.setEnabled(true);
+            panelAide.setSize(new Dimension(1000,1000));
+            panelAide.setLocation(700,400);
+            panelAide.setVisible(true);
+            panelAide.setEnabled(true);
             JLabel texte = new JLabel("Bienvenue dans notre application de création de frises !");
             JLabel texte2 = new JLabel("Grâce à cette application vous pourrez créer des frises et naviguer dans celles-ci !");
             JLabel texte3 = new JLabel("En appuyant sur Accueil vous pourrez changer de frises");
@@ -103,7 +103,7 @@ public class PanelMere extends JPanel implements ActionListener {
             this.add(texte5);
             this.add(texte6);
             this.add(texte7);
-            this.add(menuAide);
+            this.add(panelAide);
             validate();
             repaint();
         }

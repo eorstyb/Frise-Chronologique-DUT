@@ -23,7 +23,7 @@ public class PanelAffichage extends JPanel {
     public PanelAffichage(Frise parFrise) {
         frise = parFrise;
         agenda = frise.getAgenda();
-        panelDiapo = new PanelDiapo(agenda,this);
+        panelDiapo = new PanelDiapo(frise,this);
         panelFrise = new PanelFrise(frise,this);
         enregistreEcouteur(controleur);
         this.add(panelDiapo);
@@ -33,7 +33,7 @@ public class PanelAffichage extends JPanel {
     public void setFrise(Frise parFrise) {
         frise = parFrise;
         agenda = frise.getAgenda();
-        panelDiapo = new PanelDiapo(agenda, this);
+        panelDiapo = new PanelDiapo(frise, this);
         panelFrise = new PanelFrise(frise, this);
     }
 

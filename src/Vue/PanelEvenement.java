@@ -3,6 +3,7 @@ package Vue;
 import Modele.Date;
 import Modele.Evenement;
 import javax.swing.*;
+import java.awt.*;
 
 public class PanelEvenement extends JPanel {
 
@@ -11,21 +12,22 @@ public class PanelEvenement extends JPanel {
     private JLabel titre;
     private JLabel date;
     private JLabel description;
-    private ImageIcon image;
     private JLabel labelImage;
 
     public PanelEvenement(Evenement parEvenement) {
+        this.setLayout(new BorderLayout());
         evenement = parEvenement;
         titre = new JLabel(evenement.getTitre());
         date = new JLabel(evenement.getDate().toString());
         description = new JLabel(evenement.getDescription());
-        image = new ImageIcon(evenement.getChemin_image());
-        labelImage = new JLabel(image);
+        labelImage = new JLabel();
+        labelImage.setIcon(new ImageIcon(new ImageIcon(evenement.getChemin_image()).getImage().getScaledInstance(800, 400, Image.SCALE_DEFAULT)));
 
-        this.add(labelImage);
-        this.add(titre);
-        this.add(date);
-        this.add(description);
+
+        this.add(labelImage,BorderLayout.WEST);
+        this.add(titre,BorderLayout.EAST);
+        this.add(date,BorderLayout.EAST);
+        this.add(description,BorderLayout.EAST);
     }
 
     //getter
