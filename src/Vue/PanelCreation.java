@@ -49,12 +49,12 @@ public class PanelCreation extends JPanel {
         this.add(labelIntitule, contrainte);
 
         contrainte.gridx = 1;
-        contrainte.gridwidth=3;
+        contrainte.gridwidth = 3;
         this.add(entreeIntitule, contrainte);
 
         contrainte.gridx = 0;
         contrainte.gridy = 2;
-        contrainte.gridwidth=1;
+        contrainte.gridwidth = 1;
         contrainte.anchor = GridBagConstraints.LINE_START;
         this.add(labelDateDebut, contrainte);
 
@@ -124,7 +124,6 @@ public class PanelCreation extends JPanel {
 
     //méthodes
     public void enregistreEcouteur(Controleur controleur) {
-        System.out.println("enregistreEcouteur");
         this.valider.addActionListener(controleur);
         if(panelForm != null)
             panelForm.getValider().addActionListener(controleur);

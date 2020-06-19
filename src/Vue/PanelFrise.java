@@ -15,7 +15,7 @@ public class PanelFrise extends JPanel {
     private ModeleTable modele;
 
     //constructeur
-    public PanelFrise(Frise frise,PanelAffichage panelAffichage) {
+    public PanelFrise(Frise frise, PanelAffichage panelAffichage) {
         modele = new ModeleTable(frise, panelAffichage);
         tableFrise = new JTable (modele);
         JScrollPane scrollPane= new JScrollPane(tableFrise ,

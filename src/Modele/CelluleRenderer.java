@@ -12,10 +12,12 @@ public class CelluleRenderer extends JLabel implements TableCellRenderer {
     public CelluleRenderer() {
         super();
         setOpaque(true);
+        setVisible(true);
     }
 
     public Component getTableCellRendererComponent(JTable table, Object cellValue, boolean isSelected, boolean hasFocus, int row, int column) {
-        if (cellValue != null) setIcon(((Evenement) cellValue).getImageEvt());
+        if (cellValue != null)
+            setIcon(((Evenement) cellValue).getImageEvt());
         else
             setIcon(null);
         return this;

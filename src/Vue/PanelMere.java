@@ -47,7 +47,7 @@ public class PanelMere extends JPanel implements ActionListener {
             this.add(popupMenu);
         }
         else {
-            controleur = new Controleur(panelCrea, panelAff);
+            controleur = new Controleur(panelCrea, panelAff, this);
             this.add("Accueil", panelAccueil);
             this.add("Création", panelCrea);
             this.add("Affichage", panelAff);
@@ -135,14 +135,13 @@ public class PanelMere extends JPanel implements ActionListener {
         }
 
         if(e.getSource().equals(choix2)) {
-            controleur = new Controleur(panelCrea, panelAff);
+            controleur = new Controleur(panelCrea, panelAff, this);
             removeAll();
             popupMenu.setVisible(false);
             popupMenu.setEnabled(false);
             this.add("Accueil", panelAccueil);
             this.add("Création", panelCrea);
             this.add("Affichage", panelAff);
-
             repaint();
             validate();
         }
@@ -152,7 +151,7 @@ public class PanelMere extends JPanel implements ActionListener {
                 panelAff = new PanelAffichage(tabFrises[i]);
                 panelCrea = new PanelCreation(tabFrises[i], controleur);
                 panelAccueil = new PanelAccueil(tabFrises, controleur);
-                controleur = new Controleur(tabFrises, tabFrises[i], panelCrea, panelAff);
+                controleur = new Controleur(tabFrises, tabFrises[i], panelCrea, panelAff, this);
                 this.add("Accueil", panelAccueil);
                 this.add("Création",panelCrea);
                 this.add("Affichage",panelAff);
@@ -184,5 +183,16 @@ public class PanelMere extends JPanel implements ActionListener {
             }
             ob.close();
         }
+    }
+
+    public void setFrise(Frise parFrise) {
+        panelAff = new PanelAffichage(parFrise);
+        this.add("Affichage", panelAff);
+        validate();
+        repaint();
+    }
+
+    public PanelAffichage getPanelAff() {
+        return panelAff;
     }
 }

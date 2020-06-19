@@ -5,6 +5,7 @@ import Modele.Date;
 import Modele.Evenement;
 import Modele.Frise;
 
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -59,14 +60,12 @@ public class ModeleTable extends DefaultTableModel {
 
         datesColonnes[COLUMN] = frise.getDateDeFin();
         ColumnNames[COLUMN] = frise.getDateDeFin().toString();
-        for (Date s : datesColonnes)
-            System.out.println(s.toString());
-        System.out.println("Fin");
         this.setColumnIdentifiers(ColumnNames);
         setFrise(frise);
     }
 
     public void setFrise(Frise parFrise) {
+        System.out.println("SetFrise");
         this.frise = parFrise;
         this.agenda = frise.getAgenda();
         Evenement[] tabEvenements = new Evenement[100];
@@ -79,17 +78,22 @@ public class ModeleTable extends DefaultTableModel {
             i++;
         }
         int j = 0;
+        System.out.println("tabEvt[0] = " + tabEvenements[0]);
         while (tabEvenements[j] != null) {
             i = 1;
             while (i < COLUMN) {
-                System.out.println(tabEvenements[j].getDate().toString());
-                System.out.println(datesColonnes[i].toString());
-                if (tabEvenements[j].getDate().compareTo(datesColonnes[i - 1]) >= 0 && tabEvenements[j].getDate().compareTo(datesColonnes[i]) <= 0) {
-                    this.setValueAt(tabEvenements[j], tabEvenements[j].getPoids(), i);
+                if (tabEvenements[j].getDate().compareTo(datesColonnes[i - 1]) <= 0 && tabEvenements[j].getDate().compareTo(datesColonnes[i]) >= 0) {
+                    this.setValueAt(tabEvenements[j], tabEvenements[j].getPoids() - 1 , i);
+                    System.out.println("Ajout de evt" + tabEvenements[j].toString());
                 }
                 i += 1;
             }
             j += 1;
         }
+    }
+
+    @Override
+    public Class<?> getColumnClass(int columnIndex) {
+        return ImageIcon.class;
     }
 }

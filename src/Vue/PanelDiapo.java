@@ -3,6 +3,7 @@ package Vue;
 import Controleur.Controleur;
 import Modele.Agenda;
 import Modele.Evenement;
+import Modele.Frise;
 import javax.swing.*;
 import java.util.Iterator;
 
@@ -13,12 +14,14 @@ public class PanelDiapo extends JPanel {
     private JButton previous;
     private PanelEvenement panelEvenement;
     private PanelAffichage panelAffichage;
+    private Frise frise;
     private Agenda agenda;
     private Iterator iterator;
 
-    public PanelDiapo(Agenda agenda, PanelAffichage panelAffichage){
+    public PanelDiapo(Frise parFrise, PanelAffichage panelAffichage){
         this.panelAffichage = panelAffichage;
-        this.agenda = agenda;
+        frise = parFrise;
+        this.agenda = frise.getAgenda();
         next = new JButton(">");
         previous = new JButton("<");
         iterator = agenda.getListEvenements().iterator();
