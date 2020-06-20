@@ -4,11 +4,13 @@ import Controleur.Controleur;
 import Modele.Frise;
 import javax.swing.*;
 import java.awt.*;
+import static Vue.Constantes.*;
 
 public class PanelAccueil extends JPanel {
     private Frise[] tabFrises;
     private Controleur controleur;
     private JLabel label;
+    private JPanel panelAccueil;
     private JButton[] tabBoutons = new JButton[20];
 
     public PanelAccueil() {
@@ -16,11 +18,24 @@ public class PanelAccueil extends JPanel {
     }
 
     public PanelAccueil(Frise[] frise, Controleur parControleur) {
-        this.setLayout(new FlowLayout());
+        this.setLayout(new GridBagLayout());
+        this.setBackground(SOBRE);
+
         tabFrises = frise;
         controleur = parControleur;
         label = new JLabel("Voulez-vous changer de frises ?");
-        this.add(label);
+        panelAccueil = new JPanel();
+        GridBagConstraints contrainte = new GridBagConstraints();
+
+        contrainte.insets = new Insets(20, 20, 20, 20);
+        contrainte.gridx = 0;
+        contrainte.gridy = 0;
+        contrainte.anchor = GridBagConstraints.CENTER;
+
+        panelAccueil.add(label, contrainte);
+
+        this.add(panelAccueil);
+        this.add(panelAccueil);
         int i = 0;
         while (tabFrises[i] != null) {
             tabBoutons[i] = new JButton(tabFrises[i].getIntituleFrise());

@@ -8,6 +8,8 @@ import Modele.Frise;
 
 import javax.swing.JPanel;
 
+import static Vue.Constantes.SOBRE;
+
 public class PanelAffichage extends JPanel {
     //champs
     private PanelDiapo panelDiapo;
@@ -21,6 +23,7 @@ public class PanelAffichage extends JPanel {
 
     }
     public PanelAffichage(Frise parFrise) {
+        this.setBackground(SOBRE);
         frise = parFrise;
         agenda = frise.getAgenda();
         panelDiapo = new PanelDiapo(frise,this);

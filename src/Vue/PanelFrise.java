@@ -7,7 +7,7 @@ import Modele.Frise;
 import javax.swing.*;
 import java.awt.*;
 
-import static Vue.CouleurConstantes.SOBRE;
+import static Vue.Constantes.SOBRE;
 
 public class PanelFrise extends JPanel {
     //champs
