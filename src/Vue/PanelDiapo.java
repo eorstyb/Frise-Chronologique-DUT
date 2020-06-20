@@ -7,8 +7,11 @@ import Modele.Frise;
 
 import javax.swing.*;
 import java.awt.*;
+<<<<<<< HEAD
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+=======
+>>>>>>> 0a10ebc940f353230259a3713634f0144c0c20cc
 import java.util.Iterator;
 import java.util.ListIterator;
 
@@ -23,6 +26,7 @@ public class PanelDiapo extends JPanel implements ActionListener{
     private PanelAffichage panelAffichage;
     private Agenda agenda;
     private JLabel titre;
+<<<<<<< HEAD
     private ListIterator iterator;
 
     public PanelDiapo(Frise frise, PanelAffichage panelAffichage){
@@ -35,6 +39,16 @@ public class PanelDiapo extends JPanel implements ActionListener{
         String intituleFrise = frise.getIntituleFrise();
         titre = new JLabel(intituleFrise);
         titre.setFont(INTITULE);
+=======
+    private Iterator iterator;
+
+    public PanelDiapo(Frise frise, PanelAffichage panelAffichage){
+        this.setLayout(new BorderLayout());
+        this.panelAffichage = panelAffichage;
+        this.agenda = frise.getAgenda();
+
+        String intitulé = frise.getIntituleFrise();
+>>>>>>> 0a10ebc940f353230259a3713634f0144c0c20cc
         next = new JButton(">");
         previous = new JButton("<");
         next.addActionListener( this);
@@ -48,6 +62,7 @@ public class PanelDiapo extends JPanel implements ActionListener{
 
         if(iterator.hasNext()) {
             panelEvenement = new PanelEvenement((Evenement) iterator.next());
+<<<<<<< HEAD
             constraints.gridx = 1;
             constraints.gridy = 1;
             constraints.anchor = GridBagConstraints.LINE_START;
@@ -61,6 +76,13 @@ public class PanelDiapo extends JPanel implements ActionListener{
         constraints.gridx = 2;
         constraints.gridy = 1;
         this.add(next,constraints);
+=======
+
+        this.add(titre = new JLabel(intitulé));
+        this.add(panelEvenement, BorderLayout.CENTER);
+        this.add(next,BorderLayout.LINE_END);
+        this.add(previous,BorderLayout.LINE_START);
+>>>>>>> 0a10ebc940f353230259a3713634f0144c0c20cc
     }
 
     public void enregistreEcouteur(Controleur controleur) {

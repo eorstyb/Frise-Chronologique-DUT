@@ -6,6 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 import static Vue.Constantes.*;
 
+import static Vue.CouleurConstantes.SOBRE;
+import static Vue.CouleurConstantes.TEST;
+
 public class PanelAccueil extends JPanel {
     private Frise[] tabFrises;
     private Controleur controleur;
@@ -19,8 +22,11 @@ public class PanelAccueil extends JPanel {
 
     public PanelAccueil(Frise[] frise, Controleur parControleur) {
         this.setLayout(new GridBagLayout());
+<<<<<<< HEAD
         this.setBackground(SOBRE);
 
+=======
+>>>>>>> 0a10ebc940f353230259a3713634f0144c0c20cc
         tabFrises = frise;
         controleur = parControleur;
         label = new JLabel("Voulez-vous changer de frises ?");
